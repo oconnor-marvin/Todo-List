@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Oswald&family=Roboto+Condensed&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="/img/worm_compu.webp">
+    <link rel="stylesheet" href="/src/style.css">
+    <title>Todo</title>
+</head>
+
+<body>
+    <div class="outer-container">
+        <div class="main-container">
+            <div class="top-bar">
+                <h1>// To-Do</h1>
+                <i class="fa-solid fa-worm fa-3x" id="test"></i>
+                <button class="new-item-btn"><i class="fa-solid fa-feather-pointed"></i></button>
+            </div>
+            <div class="task-list-container">
+                <div class="order-drop-down">
+                    <select name="order" id="lsOrder" style="font-family: 'Roboto Condensed', sans-serif, FontAwesome;">
+                        <div id="options-container">
+                            <option value="default" id="defualt dd" style=>default order &#xf0dc; &nbsp;</option>
+                            <option value="a-z" id="a-z" style=>alph a-z &#xf15d; &nbsp;</option>
+                            <option value="z-a" id="z-a" style=>alph z-a &#xf15e; &nbsp;</option>;
+                            <option value="date-soonest" id="soonest" style=>soonest &#xf133; &nbsp;</option>;
+                            <option value="date-furthest" id="furthest" style=>furthest &#xf133; &nbsp;</option>;
+                            <option value="priority-highest" id="high-priority-dd" style=>highest priority &#xf071;
+                                &nbsp;</option>;
+                            <option value="priority-lowest" id="low-priority-dd" style=>lowest priority &#xf071; &nbsp;
+                            </option>;
+                        </div>
+                    </select>
+                </div>
+                <ul class="todo-list" id="list"></ul>
+            </div>
+            <div class="hidden-div"></div>
+            <div class="navbar">
+                <ul class="by-date">
+                    <li class="timeframe selected-time-frame" id="home">Home</li>
+                    <li class="timeframe" id="today">Today</li>
+                    <li class="timeframe" id="week">Week</li>
+                    <li class="timeframe" id="month">Month</li>
+                </ul>
+                <div class="navbar-projects-header">
+                    <h4 id="projects">Projects</h4>
+                    <i class="fa-solid fa-plus" id="newProjectBtn"></i>
+                </div>
+                <ul class="projects">
+                </ul>
+
+                <form action="" class="new-project active">
+                    <button type="submit" id="submitNewProject"><i class="fa-solid fa-circle-right"></i></button>
+                    <input type="text" id="newProjectInput" placeholder="new project" required>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="details-popup active">
+        <div class="details-popup-header">
+            <h2>Details</h2>
+            <i class="fa-solid fa-x cross" id="exitDetails"></i>
+        </div>
+        <div class="details-text">
+            <p></p>
+        </div>
+    </div>
+
+    <div class="popup-new-input active">
+        <div class="new-todo-header">
+            <h2>New To-Do</h2>
+            <i class="fa-solid fa-worm fa-2x"></i>
+            <i class="fa-solid fa-x cross" id="closeNew"></i>
+        </div>
+        <form action="" class="create-new" id="form">
+            <textarea name="new-todo" id="new-todo-title" placeholder="Title: Walk the dog." maxlength="40"
+                required></textarea>
+            <textarea name="new-todo" id="new-todo-details"
+                placeholder="Details: Take Gino to the park for an hour in the afternoon."></textarea>
+            <div class="create-new-date">
+                <div>Due Date:</div>
+                <input type="date" id="new-todo-date" name="new-todo" required>
+            </div>
+            <div class="select-project">
+                <div>Project:</div>
+                <select name="create-new-project" id="createSelectProject">
+                </select>
+            </div>
+            <div class="todo-priority">
+                <div class="btns-priority">
+                    <input type="radio" id="low-priority" name="new-priority">
+                    <label for="low-priority">Low</label>
+                </div>
+                <div class="btns-priority">
+                    <input type="radio" id="med-priority" name="new-priority">
+                    <label for="med-priority">Medium</label>
+                </div>
+                <div class="btns-priority">
+                    <input type="radio" id="high-priority" name="new-priority">
+                    <label for="high-priority">High</label>
+                </div>
+            </div>
+            <button type="submit" id="todo-submit">create new todo</button>
+        </form>
+    </div>
+
+    <div class="popup-edit-container active">
+        <div class="popup-edit-header">
+            <h2>Edit To-Do</h2>
+            <i class="fa-solid fa-worm fa-2x"></i>
+            <i class="fa-solid fa-x cross" id="closeEdit"></i>
+        </div>
+        <form action="" class="edit-form" id="edit-form">
+            <label for="edit-todo-title">Title</label>
+            <textarea name="edit-todo" id="edit-todo-title" maxlength="40" required></textarea>
+            <label for="edit-todo-details">Details</label>
+            <textarea name="edit-todo" id="edit-todo-details"></textarea>
+            <div class="edit-date">
+                <input type="date" id="edit-todo-date" name="edit-todo" required>
+            </div>
+            <div class="edit-project">
+                <select name="select-project" id="editSelectProject"></select>
+                <div id="select-label"></div>
+            </div>
+            <div class="edit-priority">
+                <div class="btns-priority">
+                    <input type="radio" id="edit-low-priority" name="edit-priority">
+                    <label for="low-priority">Low</label>
+                </div>
+                <div class="btns-priority">
+                    <input type="radio" id="edit-med-priority" name="edit-priority">
+                    <label for="med-priority">Medium</label>
+                </div>
+                <div class="btns-priority">
+                    <input type="radio" id="edit-high-priority" name="edit-priority">
+                    <label for="high-priority">High</label>
+                </div>
+            </div>
+            <button type="submit" id="edit-submit">edit todo</button>
+        </form>
+    </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
