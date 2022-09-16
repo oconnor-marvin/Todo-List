@@ -1,5 +1,7 @@
 # Todo List
 
+Live project [here](https://oconnor-marvin.github.io/todo-final/)
+
 This is a project I created by myself as part of the Odin Project. I wanted to use this project as a way to show off what I have learned. Because of this I intend to include this as a project on my portfolio.
 
 <h4>What I Learned</h4>
